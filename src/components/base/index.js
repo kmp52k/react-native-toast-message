@@ -6,7 +6,7 @@ import { icons } from '../../assets';
 import styles, { HEIGHT } from './styles';
 
 const BaseToast = (props) => {
-  const { color, icon, text1, text2, onClose } = props;
+  const { color, icon, text1, text2, onClose, onPress } = props;
 
   const baseStyle = [
     styles.base,
@@ -16,15 +16,15 @@ const BaseToast = (props) => {
 
   return (
     <View style={baseStyle}>
-      <View style={styles.iconContainer}>
+      <TouchableOpacity style={styles.iconContainer} onPress={onPress}>
         {icon ? (
           <Icon style={styles.icon} source={icon} />
         ) : (
           <View style={styles.icon} />
         )}
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.contentContainer}>
+      <TouchableOpacity style={styles.contentContainer} onPress={onPress}>
         <View style={styles.body}>
           {text1 !== undefined && (
             <View>
@@ -41,7 +41,7 @@ const BaseToast = (props) => {
             </View>
           )}
         </View>
-      </View>
+      </TouchableOpacity>
 
       <TouchableOpacity style={styles.closeButtonContainer} onPress={onClose}>
         <Icon style={styles.closeIcon} source={icons.close} />
